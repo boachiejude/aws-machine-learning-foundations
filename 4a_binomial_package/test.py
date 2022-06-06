@@ -12,7 +12,7 @@ from distributions import Binomial
 class TestGaussianClass(unittest.TestCase):
     def setUp(self):
         self.gaussian = Gaussian(25, 2)
-        self.gaussian.read_data_file('numbers.txt')
+        self.gaussian.read_data_file('4a_binomial_package/numbers.txt')
 
     def test_initialization(self): 
         self.assertEqual(self.gaussian.mean, 25, 'incorrect mean')
@@ -49,7 +49,7 @@ class TestGaussianClass(unittest.TestCase):
 class TestBinomialClass(unittest.TestCase):
     def setUp(self):
         self.binomial = Binomial(0.4, 20)
-        self.binomial.read_data_file('numbers_binomial.txt')
+        self.binomial.read_data_file('4a_binomial_package/numbers_binomial.txt')
 
     def test_initialization(self):
         self.assertEqual(self.binomial.p, 0.4, 'p value incorrect')
@@ -68,7 +68,7 @@ class TestBinomialClass(unittest.TestCase):
         self.assertEqual(round(stdev,2), 2.19)
         
     def test_replace_stats_with_data(self):
-        p, n = self.binomial.replace_stats_with_data()
+        p, n = self.binomial.replace_stats_with_data("4a_binomial_package/numbers_binomial.txt")
         self.assertEqual(round(p,3), .615)
         self.assertEqual(n, 13)
         
@@ -76,7 +76,7 @@ class TestBinomialClass(unittest.TestCase):
         self.assertEqual(round(self.binomial.pdf(5), 5), 0.07465)
         self.assertEqual(round(self.binomial.pdf(3), 5), 0.01235)
     
-        self.binomial.replace_stats_with_data()
+        self.binomial.replace_stats_with_data('4a_binomial_package/numbers_binomial.txt')
         self.assertEqual(round(self.binomial.pdf(5), 5), 0.05439)
         self.assertEqual(round(self.binomial.pdf(3), 5), 0.00472)
 
